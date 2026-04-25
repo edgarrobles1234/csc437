@@ -6,177 +6,228 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/page.css" />
+    <link rel="stylesheet" href="styles/layout.css" />
 </head>
 <body id="top">
-    <p><a href="index.html">Home</a></p>
+    <header class="site-header">
+        <div class="site-brand">
+            <h1>Edible Plants &amp; Mushrooms</h1>
+            <p>Common edible finds, harvest timing, and safe gathering notes.</p>
+        </div>
 
-    <header>
-        <h1>Edible Plants & Mushrooms</h1>
+        <nav class="site-nav" aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="edibles.html">Edibles</a></li>
+                <li><a href="fish.html">Fishing</a></li>
+                <li><a href="locations.html">Locations</a></li>
+                <li><a href="safety.html">Safety</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <p>
-            This page represents edible plants and mushrooms that can be foraged.
-            It includes example items, where they are found, when they can be harvested,
-            and how to gather them safely and sustainably.
-        </p>
+    <main class="page-shell">
+        <div class="page-grid">
+            <section class="content-stack">
+                <section class="intro-panel">
+                    <p>
+                        This page represents edible plants and mushrooms that can be foraged.
+                        It includes example items, where they are found, when they can be harvested,
+                        and how to gather them safely and sustainably.
+                    </p>
 
-        <h2>Example Edibles</h2>
-        <ul class="page-links">
-            <li>
-                <a href="#morel">
-                    <svg class="icon">
-                        <use href="icons/foraging.svg#icon-mushroom" />
-                    </svg>
-                    Morel Mushroom
-                </a>
-            </li>
-            <li>
-                <a href="#chanterelle">
-                    <svg class="icon">
-                        <use href="icons/foraging.svg#icon-mushroom" />
-                    </svg>
-                    Chanterelle
-                </a>
-            </li>
-            <li>
-                <a href="#blackberry">
-                    <svg class="icon">
-                        <use href="icons/foraging.svg#icon-berry" />
-                    </svg>
-                    Wild Blackberry
-                </a>
-            </li>
-            <li>
-                <a href="#minerslettuce">
-                    <svg class="icon">
-                        <use href="icons/foraging.svg#icon-leaf" />
-                    </svg>
-                    Miner's Lettuce
-                </a>
-            </li>
-        </ul>
+                    <h2>Example Edibles</h2>
 
-        <h2 id="morel">
-            <svg class="icon">
-                <use href="icons/foraging.svg#icon-mushroom" />
-            </svg>
-            Morel Mushroom
-        </h2>
-        <p><strong>Type:</strong> Mushroom</p>
-        <p><strong>Scientific Name:</strong> Morchella</p>
-        <p><strong>Found In:</strong> Forested areas, especially near hardwood trees</p>
-        <p><strong>Best Harvest Season:</strong> Spring</p>
-        <p><strong>Safe to Eat:</strong> Yes, if correctly identified and cooked</p>
-        <p><strong>Harvest Notes:</strong> Cut carefully at the base and avoid damaging nearby growth</p>
-        <p><strong>Sustainability Notes:</strong> Only take what you need and leave smaller mushrooms behind</p>
-        <p>
-            <strong>Wikipedia Article:</strong>
-            <a href="https://en.wikipedia.org/wiki/Morchella" target="_blank" rel="noopener noreferrer">Morchella</a>
-        </p>
+                    <ul class="jump-list">
+                        <li>
+                            <a href="#morel">
+                                <svg class="icon">
+                                    <use href="/icons/foraging.svg#icon-mushroom" />
+                                </svg>
+                                Morel
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#chanterelle">
+                                <svg class="icon">
+                                    <use href="/icons/foraging.svg#icon-mushroom" />
+                                </svg>
+                                Chanterelle
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#blackberry">
+                                <svg class="icon">
+                                    <use href="/icons/foraging.svg#icon-berry" />
+                                </svg>
+                                Blackberry
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#minerslettuce">
+                                <svg class="icon">
+                                    <use href="/icons/foraging.svg#icon-leaf" />
+                                </svg>
+                                Miner's Lettuce
+                            </a>
+                        </li>
+                    </ul>
+                </section>
 
-        <p><strong>Related Pages:</strong></p>
-        <ul>
-            <li><a href="locations.html">Foraging and Fishing Locations</a></li>
-            <li><a href="seasons.html">Seasonal Harvesting</a></li>
-            <li><a href="safety.html">Staying Safe</a></li>
-            <li><a href="law.html">Laws and Regulations</a></li>
-            <li><a href="techniques.html">Fishing and Foraging Techniques</a></li>
-            <li><a href="sustainability.html">Sustainable Practices</a></li>
-        </ul>
+                <section class="edible-list">
+                    <article class="edible-card" id="morel">
+                        <div class="edible-card-header">
+                            <h2 class="edible-title">
+                                <svg class="icon">
+                                    <use href="/icons/foraging.svg#icon-mushroom" />
+                                </svg>
+                                Morel Mushroom
+                            </h2>
+                            <p><strong>Wikipedia:</strong> <a href="https://en.wikipedia.org/wiki/Morchella" target="_blank" rel="noopener noreferrer">Morchella</a></p>
+                        </div>
+                        <div class="meta-list">
+                            <p><strong>Type:</strong> Mushroom</p>
+                            <p><strong>Scientific Name:</strong> Morchella</p>
+                            <p><strong>Best Season:</strong> Spring</p>
+                            <p><strong>Safe to Eat:</strong> Yes, if correctly identified and cooked</p>
+                        </div>
+                        <p><strong>Found In:</strong> Forested areas, especially near hardwood trees.</p>
+                        <p><strong>Harvest Notes:</strong> Cut carefully at the base and avoid damaging nearby growth.</p>
+                        <p><strong>Sustainability Notes:</strong> Only take what you need and leave smaller mushrooms behind.</p>
+                        <ul class="related-links">
+                            <li><a href="locations.html">Locations</a></li>
+                            <li><a href="seasons.html">Seasons</a></li>
+                            <li><a href="safety.html">Safety</a></li>
+                            <li><a href="law.html">Laws</a></li>
+                            <li><a href="techniques.html">Techniques</a></li>
+                            <li><a href="sustainability.html">Sustainability</a></li>
+                        </ul>
+                    </article>
 
-        <p><a href="#top">Back to top</a></p>
+                    <article class="edible-card" id="chanterelle">
+                        <div class="edible-card-header">
+                            <h2 class="edible-title">
+                                <svg class="icon">
+                                    <use href="/icons/foraging.svg#icon-mushroom" />
+                                </svg>
+                                Chanterelle
+                            </h2>
+                            <p><strong>Wikipedia:</strong> <a href="https://en.wikipedia.org/wiki/Chanterelle" target="_blank" rel="noopener noreferrer">Chanterelle</a></p>
+                        </div>
+                        <div class="meta-list">
+                            <p><strong>Type:</strong> Mushroom</p>
+                            <p><strong>Scientific Name:</strong> Cantharellus</p>
+                            <p><strong>Best Season:</strong> Summer to Fall</p>
+                            <p><strong>Safe to Eat:</strong> Yes, if correctly identified</p>
+                        </div>
+                        <p><strong>Found In:</strong> Forested areas, especially mossy conifer and mixed forests.</p>
+                        <p><strong>Harvest Notes:</strong> Cut or gently twist at the base and brush off dirt in the field.</p>
+                        <p><strong>Sustainability Notes:</strong> Harvest lightly and avoid disturbing the surrounding forest floor.</p>
+                        <ul class="related-links">
+                            <li><a href="locations.html">Locations</a></li>
+                            <li><a href="seasons.html">Seasons</a></li>
+                            <li><a href="safety.html">Safety</a></li>
+                            <li><a href="law.html">Laws</a></li>
+                            <li><a href="techniques.html">Techniques</a></li>
+                            <li><a href="sustainability.html">Sustainability</a></li>
+                        </ul>
+                    </article>
 
-        <h2 id="chanterelle">
-            <svg class="icon">
-                <use href="icons/foraging.svg#icon-mushroom" />
-            </svg>
-            Chanterelle
-        </h2>
-        <p><strong>Type:</strong> Mushroom</p>
-        <p><strong>Scientific Name:</strong> Cantharellus</p>
-        <p><strong>Found In:</strong> Forested areas, especially mossy conifer and mixed forests</p>
-        <p><strong>Best Harvest Season:</strong> Summer to Fall</p>
-        <p><strong>Safe to Eat:</strong> Yes, if correctly identified</p>
-        <p><strong>Harvest Notes:</strong> Cut or gently twist at the base and brush off dirt in the field</p>
-        <p><strong>Sustainability Notes:</strong> Harvest lightly and avoid disturbing the surrounding forest floor</p>
-        <p>
-            <strong>Wikipedia Article:</strong>
-            <a href="https://en.wikipedia.org/wiki/Chanterelle" target="_blank" rel="noopener noreferrer">Chanterelle</a>
-        </p>
+                    <article class="edible-card" id="blackberry">
+                        <div class="edible-card-header">
+                            <h2 class="edible-title">
+                                <svg class="icon">
+                                    <use href="/icons/foraging.svg#icon-berry" />
+                                </svg>
+                                Wild Blackberry
+                            </h2>
+                            <p><strong>Wikipedia:</strong> <a href="https://en.wikipedia.org/wiki/Rubus_fruticosus" target="_blank" rel="noopener noreferrer">Rubus fruticosus</a></p>
+                        </div>
+                        <div class="meta-list">
+                            <p><strong>Type:</strong> Plant / Berry</p>
+                            <p><strong>Scientific Name:</strong> Rubus fruticosus</p>
+                            <p><strong>Best Season:</strong> Summer</p>
+                            <p><strong>Safe to Eat:</strong> Yes, if collected away from polluted areas</p>
+                        </div>
+                        <p><strong>Found In:</strong> Trails, roadsides, field edges, and open wooded areas.</p>
+                        <p><strong>Harvest Notes:</strong> Pick ripe berries by hand and avoid damaging the plant.</p>
+                        <p><strong>Sustainability Notes:</strong> Leave some berries for wildlife and future regrowth.</p>
+                        <ul class="related-links">
+                            <li><a href="locations.html">Locations</a></li>
+                            <li><a href="seasons.html">Seasons</a></li>
+                            <li><a href="safety.html">Safety</a></li>
+                            <li><a href="law.html">Laws</a></li>
+                            <li><a href="techniques.html">Techniques</a></li>
+                            <li><a href="sustainability.html">Sustainability</a></li>
+                        </ul>
+                    </article>
 
-        <p><strong>Related Pages:</strong></p>
-        <ul>
-            <li><a href="locations.html">Foraging and Fishing Locations</a></li>
-            <li><a href="seasons.html">Seasonal Harvesting</a></li>
-            <li><a href="safety.html">Staying Safe</a></li>
-            <li><a href="law.html">Laws and Regulations</a></li>
-            <li><a href="techniques.html">Fishing and Foraging Techniques</a></li>
-            <li><a href="sustainability.html">Sustainable Practices</a></li>
-        </ul>
+                    <article class="edible-card" id="minerslettuce">
+                        <div class="edible-card-header">
+                            <h2 class="edible-title">
+                                <svg class="icon">
+                                    <use href="/icons/foraging.svg#icon-leaf" />
+                                </svg>
+                                Miner's Lettuce
+                            </h2>
+                            <p><strong>Wikipedia:</strong> <a href="https://en.wikipedia.org/wiki/Claytonia_perfoliata" target="_blank" rel="noopener noreferrer">Claytonia perfoliata</a></p>
+                        </div>
+                        <div class="meta-list">
+                            <p><strong>Type:</strong> Plant / Leafy Green</p>
+                            <p><strong>Scientific Name:</strong> Claytonia perfoliata</p>
+                            <p><strong>Best Season:</strong> Spring</p>
+                            <p><strong>Safe to Eat:</strong> Yes, when properly identified</p>
+                        </div>
+                        <p><strong>Found In:</strong> Shady, moist areas in California.</p>
+                        <p><strong>Harvest Notes:</strong> Pick leaves gently and avoid uprooting the whole plant.</p>
+                        <p><strong>Sustainability Notes:</strong> Harvest lightly so plants can continue growing.</p>
+                        <ul class="related-links">
+                            <li><a href="locations.html">Locations</a></li>
+                            <li><a href="seasons.html">Seasons</a></li>
+                            <li><a href="safety.html">Safety</a></li>
+                            <li><a href="law.html">Laws</a></li>
+                            <li><a href="techniques.html">Techniques</a></li>
+                            <li><a href="sustainability.html">Sustainability</a></li>
+                        </ul>
+                    </article>
+                </section>
 
-        <p><a href="#top">Back to top</a></p>
+                <div class="utility-links">
+                    <p><a href="#top">Back to top</a></p>
+                    <p><a href="index.html">Back to Home</a></p>
+                </div>
+            </section>
 
-        <h2 id="blackberry">
-            <svg class="icon">
-                <use href="icons/foraging.svg#icon-berry" />
-            </svg>
-            Wild Blackberry
-        </h2>
-        <p><strong>Type:</strong> Plant / Berry</p>
-        <p><strong>Scientific Name:</strong> Rubus fruticosus</p>
-        <p><strong>Found In:</strong> Trails, roadsides, field edges, and open wooded areas</p>
-        <p><strong>Best Harvest Season:</strong> Summer</p>
-        <p><strong>Safe to Eat:</strong> Yes, if collected away from polluted areas</p>
-        <p><strong>Harvest Notes:</strong> Pick ripe berries by hand and avoid damaging the plant</p>
-        <p><strong>Sustainability Notes:</strong> Leave some berries for wildlife and future regrowth</p>
-        <p>
-            <strong>Wikipedia Article:</strong>
-            <a href="https://en.wikipedia.org/wiki/Rubus_fruticosus" target="_blank" rel="noopener noreferrer">Rubus fruticosus</a>
-        </p>
+            <aside class="sidebar-stack">
+                <section class="sidebar-card">
+                    <h3>Edible Categories</h3>
+                    <ul>
+                        <li>Mushrooms</li>
+                        <li>Berries</li>
+                        <li>Leafy greens</li>
+                    </ul>
+                </section>
 
-        <p><strong>Related Pages:</strong></p>
-        <ul>
-            <li><a href="locations.html">Foraging and Fishing Locations</a></li>
-            <li><a href="seasons.html">Seasonal Harvesting</a></li>
-            <li><a href="safety.html">Staying Safe</a></li>
-            <li><a href="law.html">Laws and Regulations</a></li>
-            <li><a href="techniques.html">Fishing and Foraging Techniques</a></li>
-            <li><a href="sustainability.html">Sustainable Practices</a></li>
-        </ul>
+                <section class="sidebar-card">
+                    <h3>Safety Reminder</h3>
+                    <p>Never eat a wild plant or mushroom unless you are fully confident in the identification.</p>
+                </section>
 
-        <p><a href="#top">Back to top</a></p>
-
-        <h2 id="minerslettuce">
-            <svg class="icon">
-                <use href="icons/foraging.svg#icon-leaf" />
-            </svg>
-            Miner's Lettuce
-        </h2>
-        <p><strong>Type:</strong> Plant / Leafy Green</p>
-        <p><strong>Scientific Name:</strong> Claytonia perfoliata</p>
-        <p><strong>Found In:</strong> Shady, moist areas in California</p>
-        <p><strong>Best Harvest Season:</strong> Spring</p>
-        <p><strong>Safe to Eat:</strong> Yes, when properly identified</p>
-        <p><strong>Harvest Notes:</strong> Pick leaves gently and avoid uprooting the whole plant</p>
-        <p><strong>Sustainability Notes:</strong> Harvest lightly so plants can continue growing</p>
-        <p>
-            <strong>Wikipedia Article:</strong>
-            <a href="https://en.wikipedia.org/wiki/Claytonia_perfoliata" target="_blank" rel="noopener noreferrer">Claytonia perfoliata</a>
-        </p>
-
-        <p><strong>Related Pages:</strong></p>
-        <ul>
-            <li><a href="locations.html">Foraging and Fishing Locations</a></li>
-            <li><a href="seasons.html">Seasonal Harvesting</a></li>
-            <li><a href="safety.html">Staying Safe</a></li>
-            <li><a href="law.html">Laws and Regulations</a></li>
-            <li><a href="techniques.html">Fishing and Foraging Techniques</a></li>
-            <li><a href="sustainability.html">Sustainable Practices</a></li>
-        </ul>
-
-        <p><a href="index.html">Back to Home</a></p>
+                <section class="sidebar-card">
+                    <h3>Helpful Pages</h3>
+                    <ul>
+                        <li><a href="safety.html">Safety</a></li>
+                        <li><a href="seasons.html">Seasons</a></li>
+                        <li><a href="law.html">Laws</a></li>
+                    </ul>
+                </section>
+            </aside>
+        </div>
     </main>
 </body>
 </html>

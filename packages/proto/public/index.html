@@ -10,7 +10,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/page.css" />
+    <link rel="stylesheet" href="styles/layout.css" />
 </head>
     <!-- <style>
         body {
@@ -57,23 +59,63 @@
 
     </style> -->
 <body>
-    <header>
-        <h1>Foraging and Fishing in California</h1>
-        <p>Edible plants, fish, locations, seasons, and safe harvesting practices</p>
+    <header class="site-header">
+        <div class="site-brand">
+            <h1>Foraging and Fishing in California</h1>
+            <p>Eible plants, fish, locations, seasons, and safe harvesting practices</p>
+        </div>
+
+        <nav class="site-nav" aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="edibles.html">Edibles</a></li>
+                <li><a href="fish.html">Fishing</a></li>
+                <li><a href="locations.html">Locations</a></li>
+                <li><a href="safety.html">Safety</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <h2>Site Pages</h2>
-        <ul>
-            <li><a href="edibles.html">Edible Plants & Mushrooms</a></li>
-            <li><a href="fish.html">Fishing</a></li>
-            <li><a href="locations.html">Locations</a></li>
-            <li><a href="safety.html">Safety Guidelines</a></li>
-            <li><a href="seasons.html">Seasonal Foraging and Fishing</a></li>
-            <li><a href="sustainability.html">Sustainability Practices</a></li>
-            <li><a href="techniques.html">Foraging Techniques</a></li>
-            <li><a href="law.html">Laws and Regulations</a></li>
-        </ul>
+    <main class="page-shell">
+        <div class="page-grid">
+            <section class="content-stack">
+                <section class="intro-panel">
+                    <h2>Site Pages</h2>
+                    <p>Explore the guide by choosing a page below.</p>
+                </section>
+
+                <ul class="link-list">
+                    <li class="link-card"><a href="edibles.html">Edible Plants &amp; Mushrooms</a></li>
+                    <li class="link-card"><a href="fish.html">Fishing</a></li>
+                    <li class="link-card"><a href="locations.html">Locations</a></li>
+                    <li class="link-card"><a href="safety.html">Safety Guidelines</a></li>
+                    <li class="link-card"><a href="seasons.html">Seasonal Foraging and Fishing</a></li>
+                    <li class="link-card"><a href="sustainability.html">Sustainability Practices</a></li>
+                    <li class="link-card"><a href="techniques.html">Foraging Techniques</a></li>
+                    <li class="link-card"><a href="law.html">Laws and Regulations</a></li>
+                </ul>
+            </section>
+
+            <aside class="sidebar-stack">
+                <section class="sidebar-card">
+                    <h3>Quick Tips</h3>
+                    <ul>
+                        <li>Identify carefully before eating.</li>
+                        <li>Check local laws and seasons.</li>
+                        <li>Harvest lightly and leave some behind.</li>
+                    </ul>
+                </section>
+
+                <section class="sidebar-card">
+                    <h3>Popular Pages</h3>
+                    <ul>
+                        <li><a href="edibles.html">Edibles</a></li>
+                        <li><a href="safety.html">Safety</a></li>
+                        <li><a href="seasons.html">Seasons</a></li>
+                    </ul>
+                </section>
+            </aside>
+        </div>
     </main>
 </body>
 </html>

@@ -1,0 +1,239 @@
+@import url('font_sizes.css');
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+    padding: var(--space-lg);
+}
+
+.site-brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    max-width: 720px;
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+}
+
+.site-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: 0;
+}
+
+.site-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background-color: var(--cream-green);
+}
+
+.page-shell {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-lg);
+}
+
+.page-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(260px, 1fr);
+    gap: var(--space-xl);
+    align-items: start;
+}
+
+.content-stack,
+.sidebar-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.sidebar-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    border: 1px solid var(--sage-pale);
+    border-radius: 12px;
+    background-color: var(--panel-bg);
+}
+
+.sidebar-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: 0;
+}
+
+.link-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-lg);
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: 0;
+}
+
+.link-card {
+    min-width: 0;
+}
+
+.link-card a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 110px;
+    padding: var(--space-lg);
+    border: 1px solid var(--sage-pale);
+    border-radius: 12px;
+    background-color: var(--mint-light);
+    text-align: center;
+}
+
+.intro-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+
+.jump-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: 0;
+}
+
+.jump-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background-color: var(--cream-green);
+}
+
+
+.edible-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-lg);
+}
+
+.edible-card {
+    display: grid;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    border: 1px solid var(--sage-pale);
+    border-radius: 12px;
+    background-color: var(--panel-bg);
+    min-width: 0;
+}
+
+.edible-card h2 {
+    margin: 0;
+}
+
+.edible-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.edible-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.meta-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+.meta-list p {
+    margin: 0;
+    padding: 8px 12px;
+    background-color: var(--cream-green);
+    border-radius: 999px;
+}
+
+.related-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: 0;
+}
+
+.related-links a {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background-color: var(--mint-light);
+}
+
+.utility-links {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+/* Responsive */
+@media (max-width: 950px) {
+    .page-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .edible-list,
+    .link-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+    .site-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .site-nav ul {
+        width: 100%;
+    }
+
+    .edible-card-header,
+    .utility-links {
+        flex-direction: column;
+    }
+}
