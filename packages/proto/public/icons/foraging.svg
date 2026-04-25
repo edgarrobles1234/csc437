@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="icon-mushroom" viewBox="0 0 64 64">
+      <path d="M12 30c0-11 9-20 20-20s20 9 20 20H12z"></path>
+      <path d="M28 30h8v18c0 3-2 6-4 6s-4-3-4-6V30z"></path>
+      <circle cx="24" cy="24" r="2"></circle>
+      <circle cx="32" cy="20" r="2"></circle>
+      <circle cx="40" cy="24" r="2"></circle>
+    </symbol>
+
+    <symbol id="icon-berry" viewBox="0 0 64 64">
+      <circle cx="24" cy="34" r="8"></circle>
+      <circle cx="40" cy="34" r="8"></circle>
+      <circle cx="32" cy="24" r="8"></circle>
+      <path d="M32 14c3 0 6-2 8-5-5 0-8 2-10 5h2z"></path>
+      <path d="M30 14c-3 0-6-2-8-5 5 0 8 2 10 5h-2z"></path>
+    </symbol>
+
+    <symbol id="icon-leaf" viewBox="0 0 64 64">
+      <path d="M50 14C30 14 16 26 16 42c0 6 4 10 10 10 16 0 28-14 28-38-1 0-2 0-4 0z"></path>
+      <path d="M22 44c8-8 16-14 26-18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+    </symbol>
+  </defs>
+</svg>
