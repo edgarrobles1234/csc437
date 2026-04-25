@@ -20,6 +20,7 @@ header {
 header p {
     margin: 10px 0 0;
     font-style: italic;
+    color: var(--forest-mid);
 }
 
 main {
