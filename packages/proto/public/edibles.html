@@ -2,10 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edible Plants & Mushrooms</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
@@ -28,154 +26,27 @@
                 <li><a href="safety.html">Safety</a></li>
             </ul>
         </nav>
+
+        <label class="mode-toggle" data-darkmode-toggle>
+            <input type="checkbox" autocomplete="off" />
+            Dark mode
+        </label>
     </header>
 
     <main class="page-shell">
         <div class="page-grid">
             <section class="content-stack">
                 <section class="intro-panel">
-                    <h2>Edible Plants & Mushrooms</h2>
-                    <ul class="jump-list">
-                        <li>
-                            <a href="#morel">
-                                <svg class="icon">
-                                    <use href="/icons/foraging.svg#icon-mushroom" />
-                                </svg>
-                                Morel
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#chanterelle">
-                                <svg class="icon">
-                                    <use href="/icons/foraging.svg#icon-mushroom" />
-                                </svg>
-                                Chanterelle
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#blackberry">
-                                <svg class="icon">
-                                    <use href="/icons/foraging.svg#icon-berry" />
-                                </svg>
-                                Blackberry
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#minerslettuce">
-                                <svg class="icon">
-                                    <use href="/icons/foraging.svg#icon-leaf" />
-                                </svg>
-                                Miner's Lettuce
-                            </a>
-                        </li>
-                    </ul>
+                    <h2>Edible Plants &amp; Mushrooms</h2>
+                    <p>
+                        Edible plants and mushrooms that can be foraged.
+                        This page includes information about their characteristics,
+                        where they are found, when they can be harvested,
+                        and how to gather them safely and sustainably.
+                    </p>
                 </section>
 
-                <section class="edible-list">
-                    <article class="edible-card" id="morel">
-                        <div class="edible-card-header">
-                            <h2 class="edible-title">
-                                <svg class="icon">
-                                    <use href="/icons/foraging.svg#icon-mushroom" />
-                                </svg>
-                                Morel Mushroom
-                            </h2>
-                            <p><a href="https://en.wikipedia.org/wiki/Morchella" target="_blank" rel="noopener noreferrer">Wikipedia</a></p>
-                        </div>
-
-                        <div class="meta-list">
-                            <p><strong>Type:</strong> Mushroom</p>
-                            <p><strong>Season:</strong> Spring</p>
-                        </div>
-
-                        <p>Found in forested areas. Safe to eat when correctly identified and cooked.</p>
-
-                        <ul class="related-links">
-                            <li><a href="locations.html">Locations</a></li>
-                            <li><a href="seasons.html">Seasons</a></li>
-                            <li><a href="safety.html">Safety</a></li>
-                            <li><a href="techniques.html">Techniques</a></li>
-                        </ul>
-                    </article>
-
-                    <article class="edible-card" id="chanterelle">
-                        <div class="edible-card-header">
-                            <h2 class="edible-title">
-                                <svg class="icon">
-                                    <use href="/icons/foraging.svg#icon-mushroom" />
-                                </svg>
-                                Chanterelle
-                            </h2>
-                            <p><a href="https://en.wikipedia.org/wiki/Chanterelle" target="_blank" rel="noopener noreferrer">Wikipedia</a></p>
-                        </div>
-
-                        <div class="meta-list">
-                            <p><strong>Type:</strong> Mushroom</p>
-                            <p><strong>Season:</strong> Summer to Fall</p>
-                        </div>
-
-                        <p>Usually found in forests. Harvest lightly and identify carefully.</p>
-
-                        <ul class="related-links">
-                            <li><a href="locations.html">Locations</a></li>
-                            <li><a href="seasons.html">Seasons</a></li>
-                            <li><a href="safety.html">Safety</a></li>
-                            <li><a href="techniques.html">Techniques</a></li>
-                        </ul>
-                    </article>
-
-                    <article class="edible-card" id="blackberry">
-                        <div class="edible-card-header">
-                            <h2 class="edible-title">
-                                <svg class="icon">
-                                    <use href="/icons/foraging.svg#icon-berry" />
-                                </svg>
-                                Wild Blackberry
-                            </h2>
-                            <p><a href="https://en.wikipedia.org/wiki/Rubus_fruticosus" target="_blank" rel="noopener noreferrer">Wikipedia</a></p>
-                        </div>
-
-                        <div class="meta-list">
-                            <p><strong>Type:</strong> Berry</p>
-                            <p><strong>Season:</strong> Summer</p>
-                        </div>
-
-                        <p>Found along trails and field edges. Leave some berries for wildlife.</p>
-
-                        <ul class="related-links">
-                            <li><a href="locations.html">Locations</a></li>
-                            <li><a href="seasons.html">Seasons</a></li>
-                            <li><a href="safety.html">Safety</a></li>
-                            <li><a href="sustainability.html">Sustainability</a></li>
-                        </ul>
-                    </article>
-
-                    <article class="edible-card" id="minerslettuce">
-                        <div class="edible-card-header">
-                            <h2 class="edible-title">
-                                <svg class="icon">
-                                    <use href="/icons/foraging.svg#icon-leaf" />
-                                </svg>
-                                Miner's Lettuce
-                            </h2>
-                            <p><a href="https://en.wikipedia.org/wiki/Claytonia_perfoliata" target="_blank" rel="noopener noreferrer">Wikipedia</a></p>
-                        </div>
-
-                        <div class="meta-list">
-                            <p><strong>Type:</strong> Leafy Green</p>
-                            <p><strong>Season:</strong> Spring</p>
-                        </div>
-
-                        <p>Found in shady, moist areas. Pick gently and avoid uprooting the plant.</p>
-
-                        <ul class="related-links">
-                            <li><a href="locations.html">Locations</a></li>
-                            <li><a href="seasons.html">Seasons</a></li>
-                            <li><a href="safety.html">Safety</a></li>
-                            <li><a href="sustainability.html">Sustainability</a></li>
-                        </ul>
-                    </article>
-                </section>
+                <fg-edible-list src="/data/edibles.json"></fg-edible-list>
             </section>
 
             <aside class="sidebar-stack">
@@ -186,5 +57,28 @@
             </aside>
         </div>
     </main>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "@unbndl/html": "https://unpkg.com/@unbndl/html"
+      }
+    }
+    </script>
+
+    <script type="module" src="/js/dark-mode.js"></script>
+
+    <script type="module">
+    import { define } from "@unbndl/html";
+    import { EdibleCardElement } from "/js/edible-card.js?v=3";
+    import { MetaPillElement } from "/js/meta-pill.js?v=3";
+    import { EdibleListElement } from "/js/edible-list.js?v=1";
+
+    define({
+        "fg-edible-card": EdibleCardElement,
+        "fg-meta-pill": MetaPillElement,
+        "fg-edible-list": EdibleListElement
+    });
+    </script>
 </body>
 </html>

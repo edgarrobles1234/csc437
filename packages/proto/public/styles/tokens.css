@@ -13,3 +13,19 @@
     --text-dark: #2f3e2f;
     --text-light: #fff8e8;
 }
+
+body.dark-mode {
+    --forest-dark: #9fbe98;
+    --forest-mid: #b7d3b0;
+    --leaf: #c7e68a;
+    --sage-light: #4f6b4b;
+    --sage-pale: #3d523a;
+    --mint-soft: #2e3d2b;
+    --mint-light: #243322;
+    --mint-lighter: #1d2a1b;
+    --cream-green: #30402d;
+    --page-bg: #121812;
+    --panel-bg: #1a2319;
+    --text-dark: #eef5e8;
+    --text-light: #f5f8ef;
+}

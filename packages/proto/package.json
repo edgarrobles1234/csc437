@@ -7,7 +7,7 @@
   "type": "commonjs",
   "main": "packages/index.html",
   "scripts": {
-    "start": "http-server -p 3000",
+    "start": "http-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

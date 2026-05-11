@@ -115,7 +115,6 @@
     gap: var(--space-md);
 }
 
-
 .jump-list {
     list-style: none;
     display: flex;
@@ -136,52 +135,10 @@
     background-color: var(--cream-green);
 }
 
-
 .edible-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-lg);
-}
-
-.edible-card {
-    display: grid;
-    gap: var(--space-md);
-    padding: var(--space-lg);
-    border: 1px solid var(--sage-pale);
-    border-radius: 12px;
-    background-color: var(--panel-bg);
-    min-width: 0;
-}
-
-.edible-card h2 {
-    margin: 0;
-}
-
-.edible-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: var(--space-md);
-    flex-wrap: wrap;
-}
-
-.edible-title {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.meta-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-sm);
-}
-
-.meta-list p {
-    margin: 0;
-    padding: 8px 12px;
-    background-color: var(--cream-green);
-    border-radius: 999px;
 }
 
 .related-links {
@@ -203,14 +160,23 @@
     background-color: var(--mint-light);
 }
 
-.utility-links {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--space-sm);
-    flex-wrap: wrap;
+
+.mode-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background-color: var(--cream-green);
+    color: var(--forest-dark);
+    cursor: pointer;
+    font-weight: 700;
 }
 
-/* Responsive */
+.mode-toggle input {
+    accent-color: var(--leaf);
+}
+
 @media (max-width: 950px) {
     .page-grid {
         grid-template-columns: 1fr;
@@ -230,10 +196,5 @@
 
     .site-nav ul {
         width: 100%;
-    }
-
-    .edible-card-header,
-    .utility-links {
-        flex-direction: column;
     }
 }
