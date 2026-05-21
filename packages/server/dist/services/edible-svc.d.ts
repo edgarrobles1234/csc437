@@ -1,8 +1,8 @@
 import { Edible } from "../models/index.ts";
-declare function get(id: string): Edible | undefined;
-declare function getAll(): Edible[];
+declare function index(): Promise<Edible[]>;
+declare function get(id: string): Promise<Edible | undefined>;
 declare const _default: {
+    index: typeof index;
     get: typeof get;
-    getAll: typeof getAll;
 };
 export default _default;

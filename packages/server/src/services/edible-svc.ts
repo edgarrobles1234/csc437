@@ -1,90 +1,45 @@
+import { Schema, model } from "mongoose";
 import { Edible } from "../models/index.ts";
 
-const edibles: { [key: string]: Edible } = {
-  morel: {
-    id: "morel",
-    title: "Morel Mushroom",
-    icon: "mushroom",
-    wikiHref: "https://en.wikipedia.org/wiki/Morchella",
-    type: "Mushroom",
-    season: "Spring",
-    scientificName: "Morchella",
-    foundIn: "Forested areas, especially near hardwood trees",
-    safeToEat: "Yes, if correctly identified and cooked",
-    harvestNotes: "Cut carefully at the base and avoid damaging nearby growth.",
-    sustainabilityNotes: "Only take what you need and leave smaller mushrooms behind.",
+const edibleSchema = new Schema<Edible>(
+  {
+    id: { type: String, required: true, unique: true },
+    title: { type: String, required: true },
+    icon: {
+      type: String,
+      enum: ["mushroom", "berry", "leaf"],
+      required: true
+    },
+    wikiHref: String,
+    type: String,
+    season: String,
+    scientificName: String,
+    foundIn: String,
+    safeToEat: String,
+    harvestNotes: String,
+    sustainabilityNotes: String,
     links: [
-      { label: "Locations", href: "locations.html" },
-      { label: "Seasons", href: "seasons.html" },
-      { label: "Safety", href: "safety.html" },
-      { label: "Techniques", href: "techniques.html" }
+      {
+        label: String,
+        href: String
+      }
     ]
   },
-  chanterelle: {
-    id: "chanterelle",
-    title: "Chanterelle",
-    icon: "mushroom",
-    wikiHref: "https://en.wikipedia.org/wiki/Chanterelle",
-    type: "Mushroom",
-    season: "Summer to Fall",
-    scientificName: "Cantharellus",
-    foundIn: "Forested areas, especially mossy conifer and mixed forests",
-    safeToEat: "Yes, if correctly identified",
-    harvestNotes: "Cut or gently twist at the base and brush off dirt in the field.",
-    sustainabilityNotes: "Harvest lightly and avoid disturbing the surrounding forest floor.",
-    links: [
-      { label: "Locations", href: "locations.html" },
-      { label: "Seasons", href: "seasons.html" },
-      { label: "Safety", href: "safety.html" },
-      { label: "Techniques", href: "techniques.html" }
-    ]
-  },
-  blackberry: {
-    id: "blackberry",
-    title: "Wild Blackberry",
-    icon: "berry",
-    wikiHref: "https://en.wikipedia.org/wiki/Rubus_fruticosus",
-    type: "Berry",
-    season: "Summer",
-    scientificName: "Rubus fruticosus",
-    foundIn: "Trails, roadsides, field edges, and open wooded areas",
-    safeToEat: "Yes, if collected away from polluted areas",
-    harvestNotes: "Pick ripe berries by hand and avoid damaging the plant.",
-    sustainabilityNotes: "Leave some berries for wildlife and future regrowth.",
-    links: [
-      { label: "Locations", href: "locations.html" },
-      { label: "Seasons", href: "seasons.html" },
-      { label: "Safety", href: "safety.html" },
-      { label: "Sustainability", href: "sustainability.html" }
-    ]
-  },
-  minerslettuce: {
-    id: "minerslettuce",
-    title: "Miner's Lettuce",
-    icon: "leaf",
-    wikiHref: "https://en.wikipedia.org/wiki/Claytonia_perfoliata",
-    type: "Leafy Green",
-    season: "Spring",
-    scientificName: "Claytonia perfoliata",
-    foundIn: "Shady, moist areas in California",
-    safeToEat: "Yes, when properly identified",
-    harvestNotes: "Pick leaves gently and avoid uprooting the whole plant.",
-    sustainabilityNotes: "Harvest lightly so plants can continue growing.",
-    links: [
-      { label: "Locations", href: "locations.html" },
-      { label: "Seasons", href: "seasons.html" },
-      { label: "Safety", href: "safety.html" },
-      { label: "Sustainability", href: "sustainability.html" }
-    ]
-  }
-};
+  { collection: "fg_edibles" }
+);
 
-function get(id: string): Edible | undefined {
-  return edibles[id];
+const EdibleModel = model<Edible>("Edible", edibleSchema);
+
+function index(): Promise<Edible[]> {
+  return EdibleModel.find();
 }
 
-function getAll(): Edible[] {
-  return Object.values(edibles);
+function get(id: string): Promise<Edible | undefined> {
+  return EdibleModel.findOne({ id })
+    .then((doc) => doc ?? undefined)
+    .catch((err) => {
+      throw err;
+    });
 }
 
-export default { get, getAll };
+export default { index, get };
