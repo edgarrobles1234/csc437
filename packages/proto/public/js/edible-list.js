@@ -1,13 +1,6 @@
 import { html, css, shadow } from "@unbndl/html";
-import reset from "/js/reset.js";
-
-function renderJump(edible) {
-  return html`
-    <li>
-      <a href=${`#${edible.id}`}>${edible.title}</a>
-    </li>
-  `;
-}
+import { createViewModel, fromAttributes } from "@unbndl/view";
+import { fromAuth } from "@unbndl/auth";
 
 function renderLinks(links = []) {
   return links.map(
@@ -23,16 +16,13 @@ function renderEdible(edible) {
       wiki-href=${edible.wikiHref}
     >
       <span slot="title">${edible.title}</span>
-
       <span slot="meta">${edible.type}</span>
       <span slot="meta">${edible.season}</span>
-
       <span slot="scientific-name">${edible.scientificName}</span>
       <span slot="found-in">${edible.foundIn}</span>
       <span slot="safe-to-eat">${edible.safeToEat}</span>
       <span slot="harvest-notes">${edible.harvestNotes}</span>
       <span slot="sustainability-notes">${edible.sustainabilityNotes}</span>
-
       <ul slot="links" class="related-links">
         ${renderLinks(edible.links)}
       </ul>
@@ -41,50 +31,58 @@ function renderEdible(edible) {
 }
 
 export class EdibleListElement extends HTMLElement {
+  viewModel = createViewModel({
+    src: "",
+    authenticated: false,
+    token: undefined,
+    edibles: []
+  })
+    .with(fromAttributes(this), "src")
+    .with(fromAuth(this), "authenticated", "token");
+
+  view = html`
+    <section class="wrapper">
+      <section class="edible-list">
+        ${($) => $.edibles.map(renderEdible)}
+      </section>
+    </section>
+  `;
+
   constructor() {
     super();
-    shadow(this).styles(reset.styles, EdibleListElement.styles);
+
+    shadow(this)
+      .styles(EdibleListElement.styles)
+      .replace(this.viewModel.render(this.view));
+
+    this.viewModel.createEffect(($) => {
+      if ($.authenticated && $.src) {
+        this.hydrate($.src).then((data) => {
+          this.viewModel.set("edibles", data.edibles || []);
+        });
+      }
+    });
   }
 
-  static observedAttributes = ["src"];
+  get authorization() {
+    const $ = this.viewModel.toObject();
 
-  attributeChangedCallback(name, _oldValue, newValue) {
-    if (name === "src" && newValue) {
-      this.hydrate(newValue).then((data) => {
-        const view = EdibleListElement.render(data);
-        shadow(this).replace(view);
-      });
+    if ($.authenticated) {
+      return {
+        Authorization: `Bearer ${$.token}`
+      };
     }
+
+    return {};
   }
 
   hydrate(src) {
-    return fetch(src)
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error(`HTTP Status ${response.status}`);
-        }
-        return response.json();
-      })
-      .catch((error) => {
-        console.log(`Could not fetch ${src}:`, error);
-        return { edibles: [] };
-      });
-  }
-
-  static render(data) {
-    const edibles = data?.edibles || [];
-
-    return html`
-      <section class="wrapper">
-        <ul class="jump-list">
-          ${edibles.map(renderJump)}
-        </ul>
-
-        <section class="edible-list">
-          ${edibles.map(renderEdible)}
-        </section>
-      </section>
-    `;
+    return fetch(src, { headers: this.authorization }).then((res) => {
+      if (res.status !== 200) {
+        throw new Error(`Failed to fetch: ${res.status}`);
+      }
+      return res.json();
+    });
   }
 
   static styles = css`
@@ -98,40 +96,10 @@ export class EdibleListElement extends HTMLElement {
       gap: 24px;
     }
 
-    .jump-list {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding: 0;
-      margin: 0;
-    }
-
-    .jump-list a {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background-color: var(--cream-green);
-      color: var(--leaf);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .jump-list a:hover {
-      color: var(--forest-dark);
-      text-decoration: underline;
-    }
-
     .edible-list {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 24px;
-    }
-
-    fg-edible-card {
-      display: block;
     }
 
     @media (max-width: 950px) {

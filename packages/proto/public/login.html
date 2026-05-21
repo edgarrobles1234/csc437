@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles/reset.css" />
+    <link rel="stylesheet" href="/styles/tokens.css" />
+    <link rel="stylesheet" href="/styles/page.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+
+    <script type="importmap">
+      {
+        "imports": {
+          "@unbndl/auth": "https://unpkg.com/@unbndl/auth",
+          "@unbndl/html": "https://unpkg.com/@unbndl/html",
+          "@unbndl/view": "https://unpkg.com/@unbndl/view"
+        }
+      }
+    </script>
+
+    <script type="module">
+      import { define } from "@unbndl/html";
+      import { Auth } from "@unbndl/auth";
+      import { LoginFormElement } from "/js/login-form.js";
+
+      define({
+        "auth-provider": Auth.Provider,
+        "login-form": LoginFormElement
+      });
+    </script>
+  </head>
+
+  <body class="page-shell">
+    <auth-provider>
+      <main class="page-shell">
+        <section class="intro-panel">
+          <h2>User Login</h2>
+          <p>Sign in to view protected edible data.</p>
+        </section>
+
+        <section class="sidebar-card">
+          <login-form api="/auth/login">
+            <label class="form-field">
+              <span>Username</span>
+              <input name="username" autocomplete="off" />
+            </label>
+
+            <label class="form-field">
+              <span>Password</span>
+              <input type="password" name="password" />
+            </label>
+          </login-form>
+        </section>
+
+        <p>
+        <a href="/register.html">Register as a new user</a>?
+        </p>
+      </main>
+    </auth-provider>
+  </body>
+</html>
