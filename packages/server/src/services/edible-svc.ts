@@ -36,10 +36,32 @@ function index(): Promise<Edible[]> {
 
 function get(id: string): Promise<Edible | undefined> {
   return EdibleModel.findOne({ id })
-    .then((doc) => doc ?? undefined)
-    .catch((err) => {
-      throw err;
-    });
+    .then((doc) => doc ?? undefined);
 }
 
-export default { index, get };
+function create(json: Edible): Promise<Edible> {
+  const edible = new EdibleModel(json);
+  return edible.save();
+}
+
+function update(
+  id: string,
+  edible: Edible
+): Promise<Edible | undefined> {
+  return EdibleModel.findOneAndUpdate(
+    { id },
+    edible,
+    { new: true }
+  ).then((updated) => {
+    if (!updated) throw new Error(`${id} not updated`);
+    return updated as Edible;
+  });
+}
+
+function remove(id: string): Promise<void> {
+  return EdibleModel.findOneAndDelete({ id }).then((deleted) => {
+    if (!deleted) throw new Error(`${id} not deleted`);
+  });
+}
+
+export default { index, get, create, update, remove };

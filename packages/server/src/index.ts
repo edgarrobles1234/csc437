@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { connect } from "./services/mongo.ts";
 import edibles from "./routes/edibles.ts";
+import auth, { authenticateUser } from "./routes/auth.ts";
 
 const app = express();
 const port = Number(process.env.PORT) || 3000;
@@ -11,7 +12,8 @@ connect("foraging");
 app.use(express.static(staticDir));
 app.use(express.json());
 
-app.use("/api/edibles", edibles);
+app.use("/auth", auth);
+app.use("/api/edibles", authenticateUser, edibles);
 
 app.get("/hello", (_req: Request, res: Response) => {
   res.send("Hello, World");

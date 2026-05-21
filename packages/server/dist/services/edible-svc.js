@@ -28,9 +28,23 @@ function index() {
 }
 function get(id) {
     return EdibleModel.findOne({ id })
-        .then((doc) => doc ?? undefined)
-        .catch((err) => {
-        throw err;
+        .then((doc) => doc ?? undefined);
+}
+function create(json) {
+    const edible = new EdibleModel(json);
+    return edible.save();
+}
+function update(id, edible) {
+    return EdibleModel.findOneAndUpdate({ id }, edible, { new: true }).then((updated) => {
+        if (!updated)
+            throw new Error(`${id} not updated`);
+        return updated;
     });
 }
-export default { index, get };
+function remove(id) {
+    return EdibleModel.findOneAndDelete({ id }).then((deleted) => {
+        if (!deleted)
+            throw new Error(`${id} not deleted`);
+    });
+}
+export default { index, get, create, update, remove };
