@@ -1,23 +1,17 @@
 import express from "express";
-import Edibles from "./services/edible-svc.js";
+import { connect } from "./services/mongo.js";
+import edibles from "./routes/edibles.js";
+import auth, { authenticateUser } from "./routes/auth.js";
 const app = express();
 const port = Number(process.env.PORT) || 3000;
 const staticDir = process.env.STATIC || "../proto/public";
+connect("foraging");
 app.use(express.static(staticDir));
 app.use(express.json());
+app.use("/auth", auth);
+app.use("/api/edibles", authenticateUser, edibles);
 app.get("/hello", (_req, res) => {
     res.send("Hello, World");
-});
-app.get("/api/edibles", (_req, res) => {
-    res.send({ edibles: Edibles.getAll() });
-});
-app.get("/api/edibles/:id", (req, res) => {
-    const { id } = req.params;
-    const data = Edibles.get(String(id));
-    if (data)
-        res.send(data);
-    else
-        res.status(404).send();
 });
 app.listen(port, "127.0.0.1", () => {
     console.log(`Server running at http://127.0.0.1:${port}`);
