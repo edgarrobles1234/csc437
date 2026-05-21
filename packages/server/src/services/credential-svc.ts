@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import { Schema, model } from "mongoose";
-import { Credential } from "../../dist/models/index";
+import { Credential } from "../models/index.ts";
 
 const credentialSchema = new Schema<Credential>(
   {
