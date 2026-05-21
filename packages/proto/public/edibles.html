@@ -4,79 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edible Plants & Mushrooms</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/tokens.css" />
     <link rel="stylesheet" href="styles/page.css" />
     <link rel="stylesheet" href="styles/layout.css" />
-</head>
-<body id="top">
-    <header class="site-header">
-        <div class="site-brand">
-            <h1>Edible Plants &amp; Mushrooms</h1>
-        </div>
-
-        <nav class="site-nav" aria-label="Main navigation">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="edibles.html">Edibles</a></li>
-                <li><a href="fish.html">Fishing</a></li>
-                <li><a href="locations.html">Locations</a></li>
-                <li><a href="safety.html">Safety</a></li>
-            </ul>
-        </nav>
-
-        <label class="mode-toggle" data-darkmode-toggle>
-            <input type="checkbox" autocomplete="off" />
-            Dark mode
-        </label>
-    </header>
-
-    <main class="page-shell">
-        <div class="page-grid">
-            <section class="content-stack">
-                <section class="intro-panel">
-                    <h2>Edible Plants &amp; Mushrooms</h2>
-                    <p>
-                        Edible plants and mushrooms that can be foraged.
-                        This page includes information about their characteristics,
-                        where they are found, when they can be harvested,
-                        and how to gather them safely and sustainably.
-                    </p>
-                </section>
-
-                <fg-edible-list src="/api/edibles"></fg-edible-list>
-            </section>
-
-            <aside class="sidebar-stack">
-                <section class="sidebar-card">
-                    <h3>Reminder</h3>
-                    <p>Never eat wild foods unless you are fully sure of the identification.</p>
-                </section>
-            </aside>
-        </div>
-    </main>
 
     <script type="importmap">
     {
       "imports": {
-        "@unbndl/html": "https://unpkg.com/@unbndl/html"
+        "@unbndl/auth": "https://unpkg.com/@unbndl/auth",
+        "@unbndl/html": "https://unpkg.com/@unbndl/html",
+        "@unbndl/view": "https://unpkg.com/@unbndl/view"
       }
     }
     </script>
+</head>
+
+<body id="top">
+    <auth-provider>
+        <fg-header></fg-header>
+
+        <main class="page-shell">
+            <div class="page-grid">
+                <section class="content-stack">
+                    <section class="intro-panel">
+                        <h2>Edible Plants &amp; Mushrooms</h2>
+                        <p>
+                            This page represents edible plants and mushrooms that can be foraged.
+                            It includes example items, where they are found, when they can be harvested,
+                            and how to gather them safely and sustainably.
+                        </p>
+                    </section>
+
+                    <fg-edible-list src="/api/edibles"></fg-edible-list>
+                </section>
+
+                <aside class="sidebar-stack">
+                    <section class="sidebar-card">
+                        <h3>Reminder</h3>
+                        <p>Never eat wild foods unless you are fully sure of the identification.</p>
+                    </section>
+                </aside>
+            </div>
+        </main>
+    </auth-provider>
 
     <script type="module" src="/js/dark-mode.js"></script>
 
     <script type="module">
     import { define } from "@unbndl/html";
-    import { EdibleCardElement } from "/js/edible-card.js?v=3";
-    import { MetaPillElement } from "/js/meta-pill.js?v=3";
-    import { EdibleListElement } from "/js/edible-list.js?v=1";
+    import { Auth } from "@unbndl/auth";
+    import { HeaderElement } from "/js/header.js";
+    import { EdibleCardElement } from "/js/edible-card.js";
+    import { EdibleListElement } from "/js/edible-list.js";
 
     define({
+        "auth-provider": Auth.Provider,
+        "fg-header": HeaderElement,
         "fg-edible-card": EdibleCardElement,
-        "fg-meta-pill": MetaPillElement,
         "fg-edible-list": EdibleListElement
     });
     </script>
