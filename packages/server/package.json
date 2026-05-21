@@ -2,22 +2,25 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
-  "type": "commonjs",
-  "dependencies": {
-    "express": "^5.2.1"
-  },
+  "author": "",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+  "dev": "DEBUG=express/* STATIC=../proto/public npx nodemon --watch src --ignore src/**/*.test.ts --ext ts,mjs,js,json --exec \"npx tsc && node ./dist/index.js\"",
+  "build": "tsc",
+  "start": "npm run build && node dist/index.js",
+  "check": "tsc --noEmit"
+},
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^25.9.1",
     "cross-env": "^10.1.0",
     "nodemon": "^3.1.14",
     "typescript": "^6.0.3"
+  },
+  "keywords": [],
+  "dependencies": {
+    "express": "^5.2.1"
   }
 }
