@@ -1,0 +1,31 @@
+:root{
+        --forest-dark: #355e3b;
+    --forest-mid: #4f7942;
+    --leaf: #6b8e23;
+    --sage-light: #a3c585;
+    --sage-pale: #b7c9ab;
+    --mint-soft: #cfe3bf;
+    --mint-light: #dce8d5;
+    --mint-lighter: #dceccf;
+    --cream-green: #e7f2dd;
+    --page-bg: #edf6e5;
+    --panel-bg: #f7fbf2;
+    --text-dark: #2f3e2f;
+    --text-light: #fff8e8;
+}
+
+body.dark-mode {
+    --forest-dark: #9fbe98;
+    --forest-mid: #b7d3b0;
+    --leaf: #c7e68a;
+    --sage-light: #4f6b4b;
+    --sage-pale: #3d523a;
+    --mint-soft: #2e3d2b;
+    --mint-light: #243322;
+    --mint-lighter: #1d2a1b;
+    --cream-green: #30402d;
+    --page-bg: #121812;
+    --panel-bg: #1a2319;
+    --text-dark: #eef5e8;
+    --text-light: #f5f8ef;
+}
