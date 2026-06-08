@@ -10,9 +10,10 @@ export class LoginFormElement extends HTMLElement {
   view = html`
     <form>
       <slot></slot>
-      <button type="submit">
+      <button type="button" class="login-button">
         <slot name="submit-label">Login</slot>
       </button>
+      <p class="error" hidden></p>
     </form>
   `;
 
@@ -23,42 +24,73 @@ export class LoginFormElement extends HTMLElement {
       .styles(LoginFormElement.styles)
       .replace(this.viewModel.render(this.view));
 
-    this.shadowRoot.addEventListener("submit", (event) =>
-      this.submitLogin(event, this.getAttribute("api") || "#")
-    );
+    const button = this.shadowRoot?.querySelector(".login-button");
+    if (button) {
+      button.addEventListener("click", () => {
+        this.submitLogin(this.getAttribute("api") || "/auth/login");
+      });
+    }
   }
 
-  submitLogin(event, endpoint) {
-    event.preventDefault();
+  async submitLogin(endpoint) {
+    const errorEl = this.shadowRoot?.querySelector(".error");
+    if (errorEl) {
+      errorEl.hidden = true;
+      errorEl.textContent = "";
+    }
 
     const data = this.viewModel.toObject();
-    const method = "POST";
-    const headers = {
-      "Content-Type": "application/json"
-    };
-    const body = JSON.stringify(data);
+    const body = JSON.stringify({
+      username: data.username,
+      password: data.password
+    });
 
-    fetch(endpoint, { method, headers, body })
-      .then((res) => {
-        if (res.status !== 200) {
-          throw new Error(`Form submission failed: Status ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((json) => {
-        const { token } = json;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
 
-        const customEvent = new CustomEvent("auth:message", {
-          bubbles: true,
-          composed: true,
-          detail: ["auth/signin", { token, redirect: "/app" }]
-        });
-
-        this.dispatchEvent(customEvent);
-      })
-      .catch((error) => {
-        console.error("Login failed:", error);
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body,
+        signal: controller.signal
       });
+
+      clearTimeout(timeout);
+
+      const text = await res.text();
+
+      if (res.status !== 200) {
+        throw new Error(text || `Login failed: Status ${res.status}`);
+      }
+
+      const json = text ? JSON.parse(text) : {};
+      const { token } = json;
+
+      if (!token) {
+        throw new Error("Login succeeded but no token was returned");
+      }
+
+      const customEvent = new CustomEvent("auth:message", {
+        bubbles: true,
+        composed: true,
+        detail: ["auth/signin", { token, redirect: "/app" }]
+      });
+
+      this.dispatchEvent(customEvent);
+    } catch (error) {
+      clearTimeout(timeout);
+
+      if (errorEl) {
+        errorEl.hidden = false;
+        errorEl.textContent =
+          error instanceof Error ? error.message : "Login failed";
+      }
+
+      console.error("Login failed:", error);
+    }
   }
 
   static styles = css`
@@ -81,6 +113,12 @@ export class LoginFormElement extends HTMLElement {
       font: inherit;
       font-weight: 700;
       cursor: pointer;
+    }
+
+    .error {
+      color: #8b1e1e;
+      font-weight: 700;
+      margin: 0;
     }
   `;
 }

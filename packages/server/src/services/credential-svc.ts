@@ -24,9 +24,9 @@ const credentialModel = model<Credential>(
 
 function create(username: string, password: string): Promise<Credential> {
   return credentialModel
-    .find({ username })
-    .then((found: Credential[]) => {
-      if (found.length) throw new Error(`Username exists: ${username}`);
+    .findOne({ username })
+    .then((found) => {
+      if (found) throw new Error(`Username exists: ${username}`);
     })
     .then(() =>
       bcrypt
@@ -44,21 +44,18 @@ function create(username: string, password: string): Promise<Credential> {
 
 function verify(username: string, password: string): Promise<string> {
   return credentialModel
-    .find({ username })
+    .findOne({ username })
     .then((found) => {
-      if (!found || found.length !== 1) {
+      if (!found) {
         throw new Error("Invalid username or password");
       }
-      return found[0];
-    })
-    .then((credsOnFile: Credential) =>
-      bcrypt
-        .compare(password, credsOnFile.hashedPassword)
+      return bcrypt
+        .compare(password, found.hashedPassword)
         .then((result: boolean) => {
           if (!result) throw new Error("Invalid username or password");
-          return credsOnFile.username;
-        })
-    );
+          return found.username;
+        });
+    });
 }
 
 export default { create, verify };

@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 mongoose.set("debug", true);
+mongoose.set("bufferCommands", false);
+
 dotenv.config();
 
 function getMongoURI(dbname: string) {
@@ -24,6 +26,14 @@ function getMongoURI(dbname: string) {
   return connectionString;
 }
 
-export function connect(dbname: string) {
-  mongoose.connect(getMongoURI(dbname)).catch((error) => console.log(error));
+export async function connect(dbname: string) {
+  const uri = getMongoURI(dbname);
+
+  await mongoose.connect(uri, {
+    serverSelectionTimeoutMS: 5000,
+    connectTimeoutMS: 5000,
+    socketTimeoutMS: 5000
+  });
+
+  console.log("Mongo connection established");
 }

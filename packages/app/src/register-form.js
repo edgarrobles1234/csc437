@@ -11,73 +11,78 @@ export class RegisterFormElement extends HTMLElement {
   view = html`
     <form>
       <slot></slot>
-      <p class="error">${($) => $.error}</p>
-      <button type="submit">
+      ${
+        ($) =>
+          $.error
+            ? html`<p class="error">${$.error}</p>`
+            : html``
+      }
+      <button type="button" class="register-button">
         <slot name="submit-label">Register</slot>
       </button>
     </form>
   `;
 
   constructor() {
-  super();
+    super();
 
-  shadow(this)
-    .styles(RegisterFormElement.styles)
-    .replace(this.viewModel.render(this.view));
+    shadow(this)
+      .styles(RegisterFormElement.styles)
+      .replace(this.viewModel.render(this.view));
 
-  this.shadowRoot.addEventListener("submit", (event) =>
-    this.submitRegister(event, this.getAttribute("api") || "#")
-  );
-}
+    const button = this.shadowRoot?.querySelector(".register-button");
 
-  submitRegister(event, endpoint) {
-    event.preventDefault();
+    if (button) {
+      button.addEventListener("click", () => {
+        this.submitRegister(this.getAttribute("api") || "/auth/register");
+      });
+    }
+  }
+
+  async submitRegister(endpoint) {
     this.viewModel.set("error", "");
 
     const data = this.viewModel.toObject();
-
     const body = JSON.stringify({
       username: data.username,
       password: data.password
     });
 
-    console.log("Submitting register form:", endpoint, body);
+    console.log("register endpoint:", endpoint);
+    console.log("register payload:", body);
 
-    fetch(endpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body
-    })
-      .then((res) => {
-        console.log("Register status:", res.status);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
 
-        if (res.status !== 201) {
-          return res.text().then((text) => {
-            throw new Error(text || `Registration failed: ${res.status}`);
-          });
-        }
-
-        return res.json();
-      })
-      .then((json) => {
-        console.log("Register success:", json);
-
-        const { token } = json;
-
-        const customEvent = new CustomEvent("auth:message", {
-          bubbles: true,
-          composed: true,
-          detail: ["auth/signin", { token, redirect: "/edibles.html" }]
-        });
-
-        this.dispatchEvent(customEvent);
-      })
-      .catch((error) => {
-        console.error("Register failed:", error);
-        this.viewModel.set("error", error.message);
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body,
+        signal: controller.signal
       });
+
+      clearTimeout(timeout);
+      console.log("register status:", res.status);
+
+      const text = await res.text();
+      console.log("register raw response:", text);
+
+      if (res.status !== 200 && res.status !== 201) {
+        throw new Error(text || `Register failed: Status ${res.status}`);
+      }
+
+      window.location.assign("/login.html");
+    } catch (error) {
+      clearTimeout(timeout);
+      console.error("Register failed:", error);
+      this.viewModel.set(
+        "error",
+        error instanceof Error ? error.message : "Registration failed"
+      );
+    }
   }
 
   static styles = css`
@@ -91,12 +96,6 @@ export class RegisterFormElement extends HTMLElement {
       gap: 8px;
     }
 
-    .error {
-      color: #b00020;
-      min-height: 1.25rem;
-      margin: 0;
-    }
-
     button {
       padding: 10px 14px;
       border: 0;
@@ -106,6 +105,12 @@ export class RegisterFormElement extends HTMLElement {
       font: inherit;
       font-weight: 700;
       cursor: pointer;
+    }
+
+    .error {
+      color: #8b1e1e;
+      font-weight: 700;
+      margin: 0;
     }
   `;
 }
