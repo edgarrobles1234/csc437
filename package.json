@@ -1,6 +1,7 @@
 {
   "name": "csc437",
   "version": "1.0.0",
+  "private": true,
   "description": "",
   "homepage": "https://github.com/edgarrobles1234/csc437#readme",
   "bugs": {
@@ -12,12 +13,10 @@
   },
   "license": "ISC",
   "author": "",
-  "type": "commonjs",
-  "main": "index.js",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "workspaces": [
-        "packages/*"
-    ]
+  }
 }

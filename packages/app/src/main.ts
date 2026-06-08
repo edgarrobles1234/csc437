@@ -1,10 +1,13 @@
 import { define, html } from "@unbndl/html";
 import { Auth } from "@unbndl/auth";
+import { Store } from "@unbndl/store";
 import { BrowserHistory, Switch } from "@unbndl/switch";
 
 import { HeaderElement } from "./components/blz-header.ts";
 import { EdibleCardElement } from "./components/edible-card.ts";
-import { EdibleListElement } from "./components/edible-list.ts";
+import { Msg } from "./messages.ts";
+import { Model, init } from "./model.ts";
+import { Cmd, update } from "./update.ts";
 import { HomeViewElement } from "./views/home-view.ts";
 import { EdiblesViewElement } from "./views/edibles-view.ts";
 
@@ -30,12 +33,15 @@ const routes = [
 define({
   "auth-provider": Auth.Provider,
   "history-provider": BrowserHistory.Provider,
+  "store-provider": class AppStore extends Store.Provider<Model, Msg, Cmd> {
+    constructor() {
+      super(update, init);
+    }
+  },
   "blz-header": HeaderElement,
-  "fg-edible-card": EdibleCardElement,
-  "fg-edible-list": EdibleListElement,
+  "edible-card": EdibleCardElement,
   "home-view": HomeViewElement,
   "edibles-view": EdiblesViewElement,
-  // Cast to CustomElementConstructor to satisfy TS runtime element typing
   "router-switch": (class AppSwitch extends (Switch.Element as any) {
     constructor() {
       super(routes);

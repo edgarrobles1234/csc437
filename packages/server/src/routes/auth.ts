@@ -16,40 +16,56 @@ const TOKEN_SECRET: string =
 
 router.post("/register", (req: Request, res: Response) => {
   const { username, password } = req.body;
+  console.log("POST /auth/register", { username, password });
 
   if (
     typeof username !== "string" ||
     typeof password !== "string"
   ) {
-    res.status(400).send("Bad request: Invalid input data.");
-  } else {
-    credentials
-      .create(username, password)
-      .then((creds) => generateAccessToken(creds.username))
-      .then((token) => {
-        res.status(201).send({ token });
-      })
-      .catch((err) => {
-        res.status(409).send({ error: err.message });
-      });
+    return res.status(400).send("Bad request: Invalid input data.");
   }
+
+  credentials
+    .create(username, password)
+    .then((creds) => {
+      console.log("register create ok", creds.username);
+      return generateAccessToken(creds.username);
+    })
+    .then((token) => {
+      console.log("register token ok");
+      return res.status(201).send({ token });
+    })
+    .catch((err) => {
+      console.error("register failed", err);
+      return res.status(409).send({ error: err.message });
+    });
 });
 
 router.post("/login", (req: Request, res: Response) => {
   const { username, password } = req.body;
+  console.log("POST /auth/login", { username, password });
 
   if (
     typeof username !== "string" ||
     typeof password !== "string"
   ) {
-    res.status(400).send("Bad request: Invalid input data.");
-  } else {
-    credentials
-      .verify(username, password)
-      .then((goodUser: string) => generateAccessToken(goodUser))
-      .then((token) => res.status(200).send({ token }))
-      .catch(() => res.status(401).send("Unauthorized"));
+    return res.status(400).send("Bad request: Invalid input data.");
   }
+
+  credentials
+    .verify(username, password)
+    .then((goodUser: string) => {
+      console.log("login verify ok", goodUser);
+      return generateAccessToken(goodUser);
+    })
+    .then((token) => {
+      console.log("login token ok");
+      return res.status(200).send({ token });
+    })
+    .catch((err) => {
+      console.error("login failed", err);
+      return res.status(401).send("Unauthorized");
+    });
 });
 
 function generateAccessToken(username: string): Promise<string> {
